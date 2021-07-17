@@ -43,4 +43,4 @@ app.use("/api/auth", auth);
 app.use("/api/course", course);
 app.use("/api/placement", placement);
 
-app.listen(listeningPort);
+app.listen(process.env.PORT || listeningPort);
