@@ -26,7 +26,8 @@ function attemptMySQLConnection(callback) {
         queueLimit: 300, // Unlimited
         acquireTimeout: 60000,
         timeout: 60000,
-        debug: false
+        debug: false,
+        ssl: { rejectUnauthorized: false }
       });
   
       testConnection((result) => {
