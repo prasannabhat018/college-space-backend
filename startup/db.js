@@ -6,19 +6,36 @@ var user = process.env.MYSQL_USER;
 var password = process.env.MYSQL_PASSWORD;
 var database = process.env.MYSQL_DB;
 
-const db= mysql.createConnection({
-  host:host,
-  user:user,
-  password:password,
-  database:database,
-})
+let dbConfig = {
+  "host": host,
+  "user": user,
+  "password": password,
+  "database": password,
+  "connectTimeout" : 60000
+};
 
-db.connect(function(err){
-  if(err)
-      return console.log(err)
-})
+let pool = mysql.createPool(dbConfig);
 
-module.exports=db
+pool.on('connection', function (_conn) {
+    if (_conn) {
+        logger.info('Connected the database via threadId %d!!', _conn.threadId);
+        _conn.query('SET SESSION auto_increment_increment=1');
+    }
+});
+
+// const db= mysql.createConnection({
+//   host:host,
+//   user:user,
+//   password:password,
+//   database:database,
+// })
+
+// db.connect(function(err){
+//   if(err)
+//       return console.log(err)
+// })
+
+module.exports=pool;
 
 
 // let mysqlDB = null; // db handler

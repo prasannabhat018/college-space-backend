@@ -51,6 +51,7 @@ router.get("/admin/", auth, function (req, res) {
 });
 
 router.get("/test/",function(req,res){
+  // console.log("its working")
   res.send("Hey It's working!!");
 })
 module.exports = router;
