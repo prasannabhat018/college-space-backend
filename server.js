@@ -14,16 +14,25 @@ const listeningPort = 1500;
 
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Max-Age", "1800");
-  res.setHeader("Access-Control-Allow-Headers", "content-type");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "PUT, POST, GET, DELETE, PATCH, OPTIONS"
-  );
+app.options('*', (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.send('ok');
 });
+
+app.use((req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+});
+
+// app.get("/", (req, res) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader("Access-Control-Max-Age", "1800");
+//   res.setHeader("Access-Control-Allow-Headers", "content-type");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+//   );
+// });
 
 app.use(express.json());
 app.use("/api/getUser", user);
