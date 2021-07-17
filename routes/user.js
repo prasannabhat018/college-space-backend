@@ -50,4 +50,7 @@ router.get("/admin/", auth, function (req, res) {
   });
 });
 
+router.get("/test/",function(req,res){
+  res.send("Hey It's working!!");
+})
 module.exports = router;
