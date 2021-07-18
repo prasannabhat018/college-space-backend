@@ -14,15 +14,6 @@ const listeningPort = 1500;
 
 app.use(cors());
 
-// app.options('*', (req, res) => {
-//   res.set('Access-Control-Allow-Origin', '*');
-//   res.send('ok');
-// });
-
-// app.use((req, res) => {
-//   res.set('Access-Control-Allow-Origin', '*');
-// });
-
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
